@@ -6,6 +6,13 @@ extern crate clap;
 use rand::Rng;
 use std::thread;
 
+macro_rules! eprintln {
+    ($($tt:tt)*) => {{
+        use std::io::Write;
+        let _ = writeln!(&mut ::std::io::stderr(), $($tt)*);
+    }}
+}
+
 /// Compute if the point (x, y) is inside the radius of the origin.
 fn circle_contains(radius: f64, x: f64, y: f64) -> bool {
     radius.powi(2) >= x.powi(2) + y.powi(2)
@@ -51,12 +58,19 @@ fn main() {
              .short("n")
              .long("iterations")
              .takes_value(true))
+        .arg(clap::Arg::with_name("verbose")
+             .short("v")
+             .long("verbose"))
         .get_matches();
 
     let iterations = value_t!(matches, "iterations", usize).unwrap_or(1000);
     let num_workers = num_cpus::get();
+    let verbose = matches.is_present("verbose");
+
+    if verbose {
+        eprintln!("Iteration count: {}\nWorker count: {}", iterations, num_workers);
+    }
 
     println!("π ≈ {}", estimate_pi_multithreaded(iterations, num_workers));
 }
-
 
