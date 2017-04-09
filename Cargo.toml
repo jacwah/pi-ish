@@ -6,3 +6,4 @@ authors = ["Jacob Wahlgren <jacob.wahlgren@gmail.com>"]
 [dependencies]
 rand = "0.3"
 num_cpus = "1.0"
+clap = "2.0"
