@@ -2,6 +2,7 @@
 name = "pi-ish"
 version = "0.1.0"
 authors = ["Jacob Wahlgren <jacob.wahlgren@gmail.com>"]
+description = "Estimate π using Monte Carlo simulation."
 
 [dependencies]
 rand = "0.3"
