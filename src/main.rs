@@ -6,7 +6,7 @@ use std::thread;
 
 /// Compute if the point (x, y) is inside the radius of the origin.
 fn circle_contains(radius: f64, x: f64, y: f64) -> bool {
-   radius.powi(2) >= x.powi(2) + y.powi(2)
+    radius.powi(2) >= x.powi(2) + y.powi(2)
 }
 
 /// Estimate π using a Monte Carlo simulation.
@@ -33,8 +33,8 @@ fn main() {
     let mut workers = vec![];
 
     for _ in 0..num_workers {
-       workers.push(thread::spawn(move || {
-          estimate_pi(iterations)
+        workers.push(thread::spawn(move || {
+            estimate_pi(iterations)
       }));
     }
 
